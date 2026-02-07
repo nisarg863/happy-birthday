@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- GENERAL STYLES --- */
+        body {
+            margin: 0;  
+            padding: 0;
+            background-color: #5d0016;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+        }
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            color: #FFD700;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #5d0016;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Dancing Script', cursive;
+            font-weight: bold;
+            transition: transform 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- HIDDEN SECTIONS --- */
+        .screen {
+            display: none;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .active {
+            display: block;
+        }
+
+        /* --- SCREEN 1: COVER PAGE --- */
+        .camera-frame {
+            border: 8px solid #b38b59;
+            background: #333;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            position: relative;
+            display: inline-block;
+        }
+
+        .lens-circle {
+            border: 2px solid #555;
+            border-radius: 50%;
+            padding: 10px;
+            background: white;
+            display: inline-block;
+        }
+
+        .cover-photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid #333;
+        }
+
+        .decor {
+            font-size: 2rem;
+            position: absolute;
+            animation: float 3s infinite ease-in-out;
+        }
+
+        /* --- SCREEN 2: GALLERY --- */
+        .gallery-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 130px;
+            height: 180px;
+            background-color: #8b0000;
+            border: 4px solid white;
+            border-radius: 10px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .card-text {
+            font-size: 0.8rem;
+            padding: 5px;
+            color: #ddd;
+        }
+
+        .card-icon {
+            font-size: 2rem;
+        }
+
+        .caption-text {
+            display: none;
+            position: absolute;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);    
+            width: 100%;
+            font-size: 0.7rem;
+            padding: 5px 0;
+        }   
+
+        /* --- SCREEN 3: MESSAGE --- */
+        .message-box {
+            background: rgba(255, 255, 255, 0.9);
+            color: #333;
+            padding: 30px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            min-height: 150px; /* Keeps box size stable */
+            text-align: left; /* Better for typing effect */
+        }
+
+        /* Cursor Effect */
+        #typed-message::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+
+        /* This ensures line breaks in your text variable work properly */
+        #typed-message {
+            white-space: pre-wrap; 
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <audio id="bgMusic" loop>
+        <source src="bg-music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="container">
+        
+        <div id="screen1" class="screen active">
+            <span class="decor" style="top: -20px; left: 10px;">🎀</span>
+            <span class="decor" style="bottom: 10px; right: 10px;">🌸</span>
+            <h1>HAPPY BIRTHDAY SHLOKA✨🫶!</h1>
+            <div class="camera-frame">
+                <div class="lens-circle">
+                    <img src="coverpage.jpg" alt="Birthday Girl" class="cover-photo">
+                </div>
+            </div>
+            <p>POV: You are the most best and precious person I ever met 💗</p>
+            <button onclick="goToScreen2()">Continue</button>
+        </div>
+
+        <div id="screen2" class="screen">
+            <h2>Your some cute pictures 🎀😊✨</h2>
+            <div class="gallery-grid">
+                <div class="card" onclick="revealCard(this, 'pic1.jpg', 'Glow up of the century! You were a cutie then, and you’re a total stunner now. 👸🔥')">
+                    <div class="card-content"><div class="card-icon">📷</div><div class="card-text">Click to reveal</div></div>
+                    <img src="" alt="Memory"><div class="caption-text">l</div>
+                </div>
+                <div class="card" onclick="revealCard(this, 'pic2.jpg', 'You look so beautiful in pink! Such a happy picture. 💖✨')">
+                    <div class="card-content"><div class="card-icon">📷</div><div class="card-text">Click to reveal</div></div>
+                    <img src="" alt="Memory"><div class="caption-text"></div>
+                </div>
+                <div class="card" onclick="revealCard(this, 'pic3.jpg', 'You look amazing 🤍')">
+                    <div class="card-content"><div class="card-icon">📷</div><div class="card-text">Click to reveal</div></div>
+                    <img src="" alt="Memory"><div class="caption-text"></div>
+           
+                </div>
+
+                <div class="card" onclick="revealCard(this, 'pic4.jpg', 'Your smile makes this picture special 😊')">
+                    <div class="card-content"><div class="card-icon">📷</div><div class="card-text">Click to reveal</div></div>
+                    <img src="" alt="Memory"><div class="caption-text"></div>
+                </div>
+                <div class="card" onclick="revealCard(this, 'pic5.jpg', 'You look so pretty and happy here! That smile makes the whole picture perfect. 😍')">
+                    <div class="card-content"><div class="card-icon">📷</div><div class="card-text">Click to reveal</div></div>
+                    <img src="" alt="Memory"><div class="caption-text"></div>
+                </div>
+            </div>
+            <button onclick="goToScreen3()">Read my message 💌</button>
+        </div>
+
+        <div id="screen3" class="screen">
+            <h1>A Special Message for You 💌</h1>
+            <div class="message-box">
+                <p id="typed-message"></p>
+            </div>
+            <button onclick="restart()">Back to Start ↺</button>
+        </div>
+
+    </div>
+
+    <script>
+    
+        const myMessage = "Happy Birthday! Another year older, wiser, and even more fabulous! I'm so excited to see what this next chapter holds for you. May you conquer new mountains, chase your biggest dreams, and find immense fulfillment in every step. Keep shining bright, my friend, because you're just getting started. Wishing you strength, courage, and all the wonder the world has to offer...... 🎂🎈❤️✨🥳";
+        
+        const speed = 50; // Speed of typing (lower is faster)
+        let i = 0;
+
+        // Function to handle typing animation
+        function typeWriter() {
+            if (i < myMessage.length) {
+                document.getElementById("typed-message").textContent += myMessage.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // Switch to Screen 2
+        function goToScreen2() {
+            document.getElementById('screen1').classList.remove('active');
+            document.getElementById('screen2').classList.add('active');
+            
+            var audio = document.getElementById("bgMusic");
+            audio.play().catch(error => console.log("Music play failed:", error));
+        }
+
+        // Switch to Screen 3 AND Start Typing
+        function goToScreen3() {
+            document.getElementById('screen2').classList.remove('active');
+            document.getElementById('screen3').classList.add('active');
+            
+            // Clear existing text and start typing
+            document.getElementById("typed-message").textContent = "";
+            i = 0;
+            typeWriter();
+        }
+
+        function restart() {
+            location.reload(); 
+        }
+
+        function revealCard(card, imageFile, caption) {
+            const imgElement = card.querySelector('img');
+            const contentElement = card.querySelector('.card-content');
+            const captionElement = card.querySelector('.caption-text');
+            imgElement.src = imageFile;
+            contentElement.style.display = 'none';
+            imgElement.style.display = 'block';
+            captionElement.innerText = caption;
+            captionElement.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
